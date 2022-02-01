@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 954489370515537058}
   - component: {fileID: 954489370515537059}
   - component: {fileID: 1882961426}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GoalPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,5 +106,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 12.65, y: 6.82, z: 3.04}
+  m_Size: {x: 12.65, y: 6.82, z: 4.3}
   m_Center: {x: 0, y: 0, z: 0.13}

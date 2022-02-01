@@ -29,6 +29,14 @@ namespace PathCreation.Examples {
                 CreateRoadMesh ();
             }
         }
+        
+        public void UpdatePath () {
+            if (pathCreator != null) {
+                AssignMeshComponents ();
+                AssignMaterials ();
+                CreateRoadMesh ();
+            }
+        }
 
         void CreateRoadMesh () {
             Vector3[] verts = new Vector3[path.NumPoints * 8];

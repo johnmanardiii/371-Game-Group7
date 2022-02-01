@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PathCreation;
+using PathCreation.Examples;
 
 public class EnemyPath : MonoBehaviour
 {
     private PathCreator _enemyPath;
+    private RoadMeshCreator _meshCreator;
     public GameObject pathPointsObject;
 
     private Vector3[] _pathPoints;
@@ -38,20 +40,22 @@ public class EnemyPath : MonoBehaviour
      */
     public void UpdatePath()
     {
+        GetPointsByOrder();
         if (_pathPoints.Length > 0) {
             // Create a new bezier path from the waypoints.
             BezierPath bezierPath = new BezierPath(_pathPoints, false, PathSpace.xz);
             GetComponent<PathCreator>().bezierPath = bezierPath;
         }
+        
+        _meshCreator.UpdatePath();
     }
 
     private void Start()
     {
         _enemyPath = GetComponent<PathCreator>();
+        _meshCreator = GetComponent<RoadMeshCreator>();
         
         // generate path from other game object that contains a list of points, some moveable, some not.
-        GetPointsByOrder();
-        // create new path!
         UpdatePath();
     }
 

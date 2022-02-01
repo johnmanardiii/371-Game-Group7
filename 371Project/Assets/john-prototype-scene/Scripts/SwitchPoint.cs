@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwitchPoint : MonoBehaviour
+public class SwitchPoint : MonoBehaviour, IClickable
 {
     [HideInInspector] public SwitchManager _manager;
     
@@ -19,5 +19,10 @@ public class SwitchPoint : MonoBehaviour
     public void SetMaterial(Material m)
     {
         _renderer.material = m;
+    }
+
+    public void OnClicked()
+    {
+        _manager.SetSwitch(this);
     }
 }

@@ -8,6 +8,7 @@ public class SwitchManager : PointObject
 {
     private SwitchPoint[] _switchPoints;
     public SwitchPoint activePoint;
+    private EnemyPath _path;
     private void Awake()
     {
         _switchPoints = GetComponentsInChildren<SwitchPoint>();
@@ -20,6 +21,19 @@ public class SwitchManager : PointObject
             if (point.isActive)
             {
                 activePoint = point;
+            }
+        }
+
+        _path = FindObjectOfType<EnemyPath>();
+    }
+
+    private void Start()
+    {
+        // set materials
+        foreach(SwitchPoint point in _switchPoints)
+        {
+            if (point.isActive)
+            {
                 point.GetComponent<MeshRenderer>().material = enabledMat;
             }
             else
@@ -29,10 +43,16 @@ public class SwitchManager : PointObject
         }
     }
 
-    public void ChangeSwitchPoint(SwitchPoint point)
+    public void SetSwitch(SwitchPoint point)
     {
+        // set materials
+        activePoint.SetMaterial(disabledMat);
+        point.SetMaterial(enabledMat);
         activePoint = point;
         // update some stuff
+        
+        // calculate new path
+        _path.UpdatePath();
     }
 
     public override Transform GetTransform()
